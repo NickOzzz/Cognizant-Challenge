@@ -1,0 +1,38 @@
+
+<p id="error">{{error}}</p>
+<div id="h" [style.left]="left">
+    <p class="mod make">Make</p>
+    <p class="mod model">Model</p>
+    <p class="mod year">Year of the model</p>
+    <p class="mod price">Price</p>
+    <p class="mod date">Date added</p>
+</div>
+<div id="bod" [style.left]="left">
+    <!--for each element in temp3 variable, extract following data from dictionary-->
+    <div id="b" *ngFor="let model of temp3" (click)=changeStyle(model.make,model.model,model.year_model,model.price,model.date_added,model.warehouse,model.location,model.licensed)>
+    <p class="mod2 makes">{{model.make}}</p>
+    <p class="mod2 models">{{model.model}}</p>
+    <p class="mod2 years">{{model.year_model}}</p>
+    <p class="mod2 prices">{{model.price}}</p>
+    <p class="mod2 adds">{{model.date_added}}</p>
+    <!--on button press, call function setCar and pass argument to set cookie-->
+    <button class="but" (click)=setCar(model.make,model.model,model.year_model,model.price,model.date_added,model._id)>add to cart</button>
+    </div>
+</div>
+<!--pop out display appears only on click on the certain car-->
+<div [style.display]="pop" id="pop">
+<p class="pop_st ma" *ngIf="pop_list.licensed">{{pop_list.make}}</p>
+<p class="pop_st mo" *ngIf="pop_list.licensed">{{pop_list.model}}</p>
+<p class="pop_st ye" *ngIf="pop_list.licensed">{{pop_list.year}}</p>
+<p class="pop_st pr" *ngIf="pop_list.licensed">{{pop_list.price}}</p>
+<p class="pop_st da" *ngIf="pop_list.licensed">{{pop_list.date}}</p>
+<p class="pop_st wa" *ngIf="pop_list.licensed">{{pop_list.warehouse}}</p>
+<p class="pop_st lo" *ngIf="pop_list.licensed">{{pop_list.location}}</p>
+<!--if vehicle is not licensed show this text-->
+<p *ngIf="!pop_list.licensed" id="not_licensed">this vehicle is not licensed</p>
+</div>
+<!--render amount of cars added to the cart-->
+<p id="counter">{{counter}}</p>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<router-outlet></router-outlet>
